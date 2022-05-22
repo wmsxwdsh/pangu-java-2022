@@ -3,7 +3,6 @@ package com.pangu.utils.reflect;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
  *     time  : 2018/01/12
  *     desc  :
  * </pre>
