@@ -1,0 +1,9 @@
+!.gitignore
+*.iml
+*.class
+/target/
+.idea/*
+.git/*
+.DS_Store
+build/*
+
