@@ -6,6 +6,7 @@
  */
 package com.pangu.utils.generator;
 
+import com.pangu.utils.common.IdCardUtil;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class IdGenGeneratorTest {
 
         for (String idCardStr : idCardList) {
             System.out.println("身份证号：" + idCardStr);
-//            System.out.println("是否是有效身份证：" + IdCardUtil.validateCard(idCardStr));
+            System.out.println("是否是有效身份证：" + IdCardUtil.validateCard(idCardStr));
             System.out.println("--------------------------");
         }
     }
