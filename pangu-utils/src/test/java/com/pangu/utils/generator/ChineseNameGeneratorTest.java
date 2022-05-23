@@ -1,9 +1,3 @@
-/**   
- * @Title: TestChineseNameGen.java
- * @Package: com.zhurong.utils.gen
- * @author LZG, liuzhongguochn@gmail.com  
- * Copyright (c) 2019 北京艾森思科技有限公司
- */
 package com.pangu.utils.generator;
 
 import org.junit.Test;

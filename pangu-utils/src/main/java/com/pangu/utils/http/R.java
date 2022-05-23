@@ -1,9 +1,3 @@
-/**
- * @Title: InfoCoinResponse.java
- * @Package: com.zhurong.utils.response
- * @author LZG, liuzhongguochn@gmail.com
- * Copyright (c) 2018 https://onezg.cnblogs.com
- */
 package com.pangu.utils.http;
 
 import com.pangu.utils.enums.ResponseEnum;
