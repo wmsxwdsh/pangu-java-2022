@@ -1,4 +1,4 @@
-package org.pangu.jdk.java8;
+package org.pangu.jdk.java8.functional;
 
 /**
  * 函数式接口
@@ -7,6 +7,7 @@ package org.pangu.jdk.java8;
  */
 @FunctionalInterface
 public interface HelloInterface {
+
     String sayHello(String name);
 
     /**
