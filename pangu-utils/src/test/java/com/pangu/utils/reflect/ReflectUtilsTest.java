@@ -8,7 +8,6 @@ import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -47,7 +46,7 @@ public class ReflectUtilsTest {
                 ReflectUtils.reflect((Object) "abc").get()
         );
         assertEquals(
-                Optional.of(1),
+                Integer.valueOf(1),
                 ReflectUtils.reflect(1).get()
         );
     }
@@ -165,7 +164,7 @@ public class ReflectUtilsTest {
         );
         assertEquals(
                 2.0f,
-                ReflectUtils.reflect((Object) "1234").method("indexOf", "3").method("floatValue").get(),
+                (Float) ReflectUtils.reflect((Object) "1234").method("indexOf", "3").method("floatValue").get(),
                 0.0f
         );
         assertEquals(
