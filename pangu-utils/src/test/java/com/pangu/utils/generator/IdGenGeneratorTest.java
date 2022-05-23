@@ -1,6 +1,5 @@
 package com.pangu.utils.generator;
 
-import com.pangu.utils.common.IdCardUtil;
 import org.junit.Test;
 
 import java.util.ArrayList;

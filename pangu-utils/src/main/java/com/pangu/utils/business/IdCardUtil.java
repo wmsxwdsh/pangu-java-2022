@@ -1,4 +1,6 @@
-package com.pangu.utils.common;
+package com.pangu.utils.business;
+
+import com.pangu.utils.common.StringUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
