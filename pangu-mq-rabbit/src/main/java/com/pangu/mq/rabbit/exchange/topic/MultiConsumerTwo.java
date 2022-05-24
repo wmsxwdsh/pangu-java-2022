@@ -1,4 +1,4 @@
-package com.pangu.mq.rabbit.exchange.fanout;
+package com.pangu.mq.rabbit.exchange.topic;
 
 import com.rabbitmq.client.*;
 
@@ -6,8 +6,10 @@ import java.io.IOException;
 
 public class MultiConsumerTwo {
 
-    private static final String Exchange_Name = "rabbit:mq02:exchange:e01";
-    private static final String Queue_Name_02 = "rabbit:mq02:queue:q02";
+    private static final String Exchange_Name = "rabbit:mq04:exchange:e01";
+
+    private static final String Queue_Name_02 = "rabbit:mq04:queue:q02";
+    private static final String Routing_Key_02 = "rabbit:mq04:routing:key:r.#";
 
     public static void main(String[] args) {
         try {
@@ -16,15 +18,13 @@ public class MultiConsumerTwo {
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
 
-            //TODO：fanout-exchange无意识分发消息模型
-            channel.exchangeDeclare(Exchange_Name, BuiltinExchangeType.FANOUT);
+            channel.exchangeDeclare(Exchange_Name, BuiltinExchangeType.TOPIC);
             channel.queueDeclare(Queue_Name_02, true, false, false, null);
-            channel.queueBind(Queue_Name_02, Exchange_Name, "");
+            channel.queueBind(Queue_Name_02, Exchange_Name, Routing_Key_02);
 
             Consumer consumer = new DefaultConsumer(channel) {
                 @Override
-                public void handleDelivery(String consumerTag, Envelope envelope,
-                                           AMQP.BasicProperties properties, byte[] body) throws IOException {
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                     String message = new String(body, "UTF-8");
                     System.out.println("消费者2接收到消息成功---> " + message);
                 }
@@ -36,4 +36,3 @@ public class MultiConsumerTwo {
         }
     }
 }
-
