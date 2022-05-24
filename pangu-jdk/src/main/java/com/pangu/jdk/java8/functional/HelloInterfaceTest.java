@@ -1,4 +1,4 @@
-package org.pangu.jdk.java8.functional;
+package com.pangu.jdk.java8.functional;
 
 /**
  * @author LZG

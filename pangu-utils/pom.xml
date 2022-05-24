@@ -6,7 +6,11 @@
 
     <groupId>org.pangu</groupId>
     <artifactId>pangu-utils</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>../pangu-mq-rabbit</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

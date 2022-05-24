@@ -1,4 +1,4 @@
-package org.pangu.jdk.base.listDeep;
+package com.pangu.jdk.base.listDeep;
 
 import java.util.ArrayList;
 import java.util.Arrays;

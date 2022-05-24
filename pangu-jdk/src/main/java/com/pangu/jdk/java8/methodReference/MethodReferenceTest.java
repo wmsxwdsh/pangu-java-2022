@@ -1,4 +1,4 @@
-package org.pangu.jdk.java8.methodReference;
+package com.pangu.jdk.java8.methodReference;
 
 import java.util.ArrayList;
 import java.util.List;

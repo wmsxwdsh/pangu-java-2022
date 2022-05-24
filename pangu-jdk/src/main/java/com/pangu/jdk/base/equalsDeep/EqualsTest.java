@@ -1,4 +1,4 @@
-package org.pangu.jdk.base.equalsDeep;
+package com.pangu.jdk.base.equalsDeep;
 
 /**
  * 深入理解equals方法

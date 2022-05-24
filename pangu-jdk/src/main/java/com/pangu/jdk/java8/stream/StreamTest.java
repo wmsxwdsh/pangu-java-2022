@@ -1,4 +1,4 @@
-package org.pangu.jdk.java8.stream;
+package com.pangu.jdk.java8.stream;
 
 import java.util.Arrays;
 import java.util.List;

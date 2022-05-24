@@ -1,4 +1,4 @@
-package org.pangu.jdk.base.staticDeep;
+package com.pangu.jdk.base.staticDeep;
 
 /**
  * 深入理解static，下面例子理解明白了，static再无难点

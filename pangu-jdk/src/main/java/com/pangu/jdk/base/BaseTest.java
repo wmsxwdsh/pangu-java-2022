@@ -1,4 +1,4 @@
-package org.pangu.jdk.base;
+package com.pangu.jdk.base;
 
 /**
  * 基础
