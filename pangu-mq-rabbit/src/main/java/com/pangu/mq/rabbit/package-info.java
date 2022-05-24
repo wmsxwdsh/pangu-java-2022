@@ -1,0 +1,1 @@
+package com.pangu.mq.rabbit;
