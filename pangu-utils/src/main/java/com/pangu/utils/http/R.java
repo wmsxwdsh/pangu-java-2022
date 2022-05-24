@@ -8,10 +8,10 @@ import com.pangu.utils.enums.ResponseEnum;
  * @author LZG
  * @date 2018/11/6
  */
-public class R {
+public class R<T> {
     private String code;
     private String msg;
-    private Object data;
+    private T data;
 
     public static R build(String statusCode, String msg, Object data) {
         return new R(statusCode, msg, data);
@@ -47,13 +47,13 @@ public class R {
 
     }
 
-    public R(String statusCode, String msg, Object data) {
+    public R(String statusCode, String msg, T data) {
         this.code = statusCode;
         this.msg = msg;
         this.data = data;
     }
 
-    public R(Object data) {
+    public R(T data) {
         this.code = "200";
         this.msg = "success";
         this.data = data;
@@ -75,11 +75,11 @@ public class R {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
