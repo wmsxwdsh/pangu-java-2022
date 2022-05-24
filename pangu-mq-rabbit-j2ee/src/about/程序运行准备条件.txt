@@ -1,0 +1,8 @@
+1、mysql
+version: mysql 8.0+
+application.properties更改database、username、password
+
+2、rabbitmq
+localhost:15672
+guest/guest
+
