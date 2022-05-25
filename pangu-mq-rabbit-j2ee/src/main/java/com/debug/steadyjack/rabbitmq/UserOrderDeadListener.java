@@ -7,14 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
  * Created by Administrator on 2018/9/1.
  */
-@Component
+//@Component
 public class UserOrderDeadListener {
 
     private static final Logger log= LoggerFactory.getLogger(UserOrderDeadListener.class);

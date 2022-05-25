@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -61,6 +60,7 @@ public class RabbitmqConfig {
      */
     @Bean(name = "multiListenerContainer")
     public SimpleRabbitListenerContainerFactory multiListenerContainer(){
+
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factoryConfigurer.configure(factory,connectionFactory);
         factory.setMessageConverter(new Jackson2JsonMessageConverter());
@@ -73,27 +73,34 @@ public class RabbitmqConfig {
 
     @Bean
     public RabbitTemplate rabbitTemplate(){
-        connectionFactory.setPublisherConfirms(true);
-        connectionFactory.setPublisherReturns(true);
+//        connectionFactory.setPublisherConfirms(true);
+//        connectionFactory.setPublisherConfirmType(CachingConnectionFactory.ConfirmType.CORRELATED); // =上面那行代码
+//        connectionFactory.setPublisherReturns(true);
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMandatory(true);
-        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
-            @Override
-            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                log.info("消息发送成功:correlationData({}),ack({}),cause({})",correlationData,ack,cause);
-            }
-        });
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
-            @Override
-            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-                log.info("消息丢失:exchange({}),route({}),replyCode({}),replyText({}),message:{}",exchange,routingKey,replyCode,replyText,message);
-            }
-        });
+//        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+//            @Override
+//            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+//                log.info("消息发送成功:correlationData({}),ack({}),cause({})",correlationData,ack,cause);
+//            }
+//        });
+//        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+//            @Override
+//            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+//                log.info("消息丢失:exchange({}),route({}),replyCode({}),replyText({}),message:{}",exchange,routingKey,replyCode,replyText,message);
+//            }
+//        });
+//        rabbitTemplate.setReturnsCallback((returned)-> {
+//
+//            log.info("消息回调");
+//        });
+
+
         return rabbitTemplate;
     }
 
 
-    //TODO：基本消息模型构建
+    //TODO：基本消息模型构建（对应RabbitContoller)
 
     @Bean
     public DirectExchange basicExchange(){

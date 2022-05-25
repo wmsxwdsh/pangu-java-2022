@@ -7,12 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by Administrator on 2018/8/23.
  */
-@Component
+//@Component
 public class RobbingListener {
 
     private static final Logger log= LoggerFactory.getLogger(RobbingListener.class);

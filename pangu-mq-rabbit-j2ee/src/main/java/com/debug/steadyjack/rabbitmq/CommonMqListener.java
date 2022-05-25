@@ -9,12 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by Administrator on 2018/8/30.
  */
-@Component
+//@Component
 public class CommonMqListener {
 
     private static final Logger log= LoggerFactory.getLogger(CommonMqListener.class);

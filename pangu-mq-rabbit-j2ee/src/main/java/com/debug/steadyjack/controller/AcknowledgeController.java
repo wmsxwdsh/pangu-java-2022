@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AcknowledgeController {
 
-    private static final Logger log= LoggerFactory.getLogger(AcknowledgeController.class);
+    private static final Logger log = LoggerFactory.getLogger(AcknowledgeController.class);
 
-    private static final String Prefix="ack";
+    private static final String Prefix = "ack";
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -37,17 +37,17 @@ public class AcknowledgeController {
     private Environment env;
 
 
-    @RequestMapping(value = Prefix+"/user/info",method = RequestMethod.GET)
-    public BaseResponse ackUser(){
-        User user=new User(1,"debug","steadyjack");
+    @RequestMapping(value = Prefix + "/user/info", method = RequestMethod.GET)
+    public BaseResponse ackUser() {
+        User user = new User(1, "debug", "steadyjack");
         try {
             rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
             rabbitTemplate.setExchange(env.getProperty("simple.mq.exchange.name"));
             rabbitTemplate.setRoutingKey(env.getProperty("simple.mq.routing.key.name"));
 
-            Message message=MessageBuilder.withBody(objectMapper.writeValueAsBytes(user)).setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
+            Message message = MessageBuilder.withBody(objectMapper.writeValueAsBytes(user)).setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
             rabbitTemplate.convertAndSend(message);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new BaseResponse(StatusCode.Success);
