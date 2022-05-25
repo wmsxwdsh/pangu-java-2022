@@ -1,0 +1,20 @@
+准备条件：
+1、mysql
+version: mysql 8.0+
+application.properties更改database、username、password
+
+2、rabbitmq
+localhost:15672
+guest/guest
+
+#############################################
+#############################################
+
+1、springboot 事件驱动演示
+listener包下的event和listener
+测试类 OrderRecordController （Pulisher)
+
+2、rabbitTemplate的消息发送和接收
+RabbitmqConfig （1）基本消息模型 （2）singleListenerContainer
+CommonLister 消费者
+测试类 RabbitController（String、bean、map三种类型的发送示例）
