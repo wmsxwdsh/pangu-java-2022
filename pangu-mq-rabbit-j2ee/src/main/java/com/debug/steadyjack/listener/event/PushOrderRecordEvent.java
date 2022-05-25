@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationEvent;
  * 相当于-Rabbitmq的message-一串二进制数据流
  * Created by steadyjack on 2018/8/21.
  */
-public class PushOrderRecordEvent extends ApplicationEvent{
+public class PushOrderRecordEvent extends ApplicationEvent {
 
     private String orderNo;
 

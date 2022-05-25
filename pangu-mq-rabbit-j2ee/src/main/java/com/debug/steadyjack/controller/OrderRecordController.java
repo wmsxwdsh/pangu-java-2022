@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 /**
  * Created by steadyjack on 2018/8/21.
  */
 @RestController
 public class OrderRecordController {
 
-    private static final Logger log= LoggerFactory.getLogger(OrderRecordController.class);
+    private static final Logger log = LoggerFactory.getLogger(OrderRecordController.class);
 
-    private static final String Prefix="order";
+    private static final String Prefix = "order";
 
     //TODO：类似于RabbitTemplate
     @Autowired
@@ -28,17 +30,20 @@ public class OrderRecordController {
 
     /**
      * 下单
+     *
      * @return
      */
-    @RequestMapping(value = Prefix+"/push",method = RequestMethod.GET)
-    public BaseResponse pushOrder(){
-        BaseResponse response=new BaseResponse(StatusCode.Success);
+    @RequestMapping(value = Prefix + "/push", method = RequestMethod.GET)
+    public BaseResponse pushOrder() {
+        BaseResponse response = new BaseResponse(StatusCode.Success);
 
         try {
-            PushOrderRecordEvent event=new PushOrderRecordEvent(this,"orderNo_20180821001","物流12");
+            String orderNo = "orderNo_20180821001";
+            String orderNo2 = "orderNo_" + UUID.randomUUID();
+            PushOrderRecordEvent event = new PushOrderRecordEvent(this, orderNo2, "物流12");
             publisher.publishEvent(event);
-        }catch (Exception e){
-            log.error("下单发生异常：",e.fillInStackTrace());
+        } catch (Exception e) {
+            log.error("下单发生异常：", e.fillInStackTrace());
         }
 
         return response;
