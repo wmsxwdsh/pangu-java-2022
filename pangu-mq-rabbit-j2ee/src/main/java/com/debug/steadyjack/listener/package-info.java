@@ -24,4 +24,8 @@ package com.debug.steadyjack.listener;
  * http://localhost:9092/order/push
  * 监听到的下单记录： PushOrderRecordEvent{orderNo='orderNo_c8940b20-3282-4207-b0f9-9e738ba73721', orderType='物流12'}
  *
+ *
+ * 小技巧：
+ * 1、BeanUtils.copyProperties(event, entity);
+ *   BeanUtils是spring的类，实现对象的拷贝
  */
