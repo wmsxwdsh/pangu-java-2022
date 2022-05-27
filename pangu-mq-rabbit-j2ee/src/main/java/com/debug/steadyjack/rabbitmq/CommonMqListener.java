@@ -69,9 +69,10 @@ public class CommonMqListener {
      * @param message
      */
     @RabbitListener(queues = "${simple.dead.real.queue.name}", containerFactory = "singleListenerContainer")
-    public void consumeDeadQueue(@Payload byte[] message) {
+    public void consumeDeadQueue(String message) {
         try {
-            log.info("监听消费死信队列中的消息： {} ", new String(message, "UTF-8"));
+//            log.info("监听消费死信队列中的消息： {} ", new String(message, "UTF-8"));
+            log.info("监听消费死信队列中的消息： {} ", message);
 
             mailService.sendEmail();
         } catch (Exception e) {

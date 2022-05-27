@@ -276,9 +276,13 @@ public class RabbitmqConfig {
     public Queue simpleDeadQueue() {
         Map<String, Object> args = new HashMap();
 
+        /**
+         * 监听队列的exchange和routing-key用的也是这两，建立关联
+         * 这3个参数如果变了，要到rabbitmq工作台删除，要不报错
+         */
         args.put("x-dead-letter-exchange", env.getProperty("simple.dead.exchange.name"));
         args.put("x-dead-letter-routing-key", env.getProperty("simple.dead.routing.key.name"));
-        args.put("x-message-ttl", 10000);
+        args.put("x-message-ttl", 10000); //存活时间，10秒后死亡进入列信队列
 
         return new Queue(env.getProperty("simple.dead.queue.name"), true, false, false, args);
     }

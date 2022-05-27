@@ -2,6 +2,7 @@ package com.debug.steadyjack.controller;
 
 import com.debug.steadyjack.response.BaseResponse;
 import com.debug.steadyjack.response.StatusCode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
@@ -15,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Administrator on 2018/9/1.
+ * 死信队列
  */
 @RestController
 public class DeadQueueController {
 
-    private static final Logger log= LoggerFactory.getLogger(MailController.class);
+    private static final Logger log = LoggerFactory.getLogger(MailController.class);
 
-    private static final String Prefix="dead/queue";
+    private static final String Prefix = "dead/queue";
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -29,19 +31,23 @@ public class DeadQueueController {
     @Autowired
     private Environment env;
 
+    @Autowired
+    private ObjectMapper objectMapper;
 
-    @RequestMapping(value = Prefix+"/send",method = RequestMethod.GET)
-    public BaseResponse sendMail(){
-        BaseResponse response=new BaseResponse(StatusCode.Success);
+
+    @RequestMapping(value = Prefix + "/send", method = RequestMethod.GET)
+    public BaseResponse sendMail() {
+        BaseResponse response = new BaseResponse(StatusCode.Success);
         try {
             rabbitTemplate.setExchange(env.getProperty("simple.produce.exchange.name"));
             rabbitTemplate.setRoutingKey(env.getProperty("simple.produce.routing.key.name"));
 
-            String str="死信队列的消息";
-            Message message=MessageBuilder.withBody(str.getBytes("UTF-8")).build();
-            rabbitTemplate.convertAndSend(message);
+            String str = "hello我是死信队列的消息";
 
-        }catch (Exception e){
+            Message msg = MessageBuilder.withBody(objectMapper.writeValueAsBytes(str)).build();
+            rabbitTemplate.convertAndSend(msg);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
