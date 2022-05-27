@@ -12,20 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Administrator on 2018/8/25.
+ * <p>
+ * 并发抢单模拟
  */
 @RestController
 public class ConcurrencyController {
 
-    private static final Logger log= LoggerFactory.getLogger(HelloWorldController.class);
+    private static final Logger log = LoggerFactory.getLogger(HelloWorldController.class);
 
-    private static final String Prefix="concurrency";
+    private static final String Prefix = "concurrency";
 
     @Autowired
     private InitService initService;
 
-    @RequestMapping(value = Prefix+"/robbing/thread",method = RequestMethod.GET)
-    public BaseResponse robbingThread(){
-        BaseResponse response=new BaseResponse(StatusCode.Success);
+    @RequestMapping(value = Prefix + "/robbing/thread", method = RequestMethod.GET)
+    public BaseResponse robbingThread() {
+        BaseResponse response = new BaseResponse(StatusCode.Success);
         initService.generateMultiThread();
         return response;
     }
