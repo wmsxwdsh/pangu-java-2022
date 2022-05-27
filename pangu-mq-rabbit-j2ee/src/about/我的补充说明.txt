@@ -37,6 +37,9 @@ mq工作台里可以看到Consumer有10个，就是simpleContainer里配置的�
 5、消息确认机制之商城下单（下单和抢单不是一回事）
 RabbitmqConfig 的 SimpleMessageListenerContainer（绑定了userOrderListener）
 UserOrderListener 监听器
-测试类 UserOrderController -- 这里是实战商城抢单的核心入口
+测试类 UserOrderController
+（1）这里是实战商城抢单的核心入口
+（2）里面加了异步日志
+
 
 
