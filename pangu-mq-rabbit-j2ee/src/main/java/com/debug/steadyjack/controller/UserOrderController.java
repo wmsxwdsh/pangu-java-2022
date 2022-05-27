@@ -107,6 +107,7 @@ public class UserOrderController {
 
     /**
      * 用户商城下单
+     * 死信队列，超过没支付自动失效
      *
      * @param dto
      * @return
