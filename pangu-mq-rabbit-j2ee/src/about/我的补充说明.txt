@@ -29,5 +29,6 @@ RabbitmqConfig 商品抢单消息模型创建
 2个重要点：simpleContaine（设置并发量、一次拉取量等）、ChannelAwareMessageListener
 
 RabbitmqConfig 内用的是 simpleContainer
-SimpleListener（监听器） 实现了ChannelAwareMessageListener接口
+SimpleListener（监听器） 实现了ChannelAwareMessageListener接口。内有消息确认机制、拒绝
 测试类 AcknowledgeController
+
