@@ -184,7 +184,7 @@ public class UserOrderController {
                     MessageProperties properties = message.getMessageProperties();
                     properties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
                     properties.setHeader(AbstractJavaTypeMapper.DEFAULT_CONTENT_CLASSID_FIELD_NAME, Integer.class);
-
+                    //这里设置成动态DDL
                     properties.setExpiration(String.valueOf(ttl));
                     return message;
                 }

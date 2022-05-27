@@ -72,6 +72,11 @@ CommonMqListener UserOrderDeadListener
 
 测试类 UserOrderContrller
 
+3、死信队列之动态设置TTL（存活时间 Time to Live）
+RabbitmqConfig 死信队列动态设置TTL消息模型
+CommonMqListener  UserOrderDeadListener
+时间设置代码 在UserOrderController里的 pushUserOrderV3 方法
+
 
 
 
