@@ -98,7 +98,7 @@
         UPDATE product a
         SET a.total = a.total - 1
         WHERE a.product_no = #{productNo}
-            AND a.total > 0
+          AND a.total > 0
     </update>
 
     <!--根据产品号查询-->
@@ -106,7 +106,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM product WHERE product_no = #{productNo}
-            AND total>0
+        AND total>0
     </select>
 
 </mapper>
