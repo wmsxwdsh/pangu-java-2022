@@ -31,13 +31,13 @@ public class CommonMqListener {
     /**
      * 监听消费用户日志
      *
-     * @param message
+     * @param userLog
      */
     @RabbitListener(queues = "${log.user.queue.name}", containerFactory = "singleListenerContainer")
-    public void consumeUserLogQueue(@Payload byte[] message) {
+    public void consumeUserLogQueue(UserLog userLog) {
         try {
-            UserLog userLog = objectMapper.readValue(message, UserLog.class);
-            log.info("监听消费用户日志 监听到消息： {} ", userLog);
+//            UserLog userLog = objectMapper.readValue(message, UserLog.class);
+//            log.info("监听消费用户日志 监听到消息： {} ", userLog);
 
             userLogMapper.insertSelective(userLog);
         } catch (Exception e) {
