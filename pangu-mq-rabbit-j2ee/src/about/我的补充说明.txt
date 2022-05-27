@@ -4,7 +4,7 @@ version: mysql 8.0+
 application.properties更改database、username、password
 
 2、rabbitmq
-localhost:15672
+localhost:15672（工作台端口是15672，mq端口是5672）
 guest/guest
 
 #############################################
