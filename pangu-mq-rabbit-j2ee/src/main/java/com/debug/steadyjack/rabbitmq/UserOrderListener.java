@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component("userOrderListener")
 public class UserOrderListener implements ChannelAwareMessageListener {
 
-    private static final Logger log= LoggerFactory.getLogger(UserOrderListener.class);
+    private static final Logger log = LoggerFactory.getLogger(UserOrderListener.class);
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -29,23 +29,24 @@ public class UserOrderListener implements ChannelAwareMessageListener {
 
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
-        long tag=message.getMessageProperties().getDeliveryTag();
+        long tag = message.getMessageProperties().getDeliveryTag();
         try {
-            byte[] body=message.getBody();
-            UserOrderDto entity=objectMapper.readValue(body, UserOrderDto.class);
-            log.info("用户商城下单监听到消息： {} ",entity);
+            byte[] body = message.getBody();
+            UserOrderDto entity = objectMapper.readValue(body, UserOrderDto.class);
+            log.info("用户商城下单监听到消息： {} ", entity);
 
-            UserOrder userOrder=new UserOrder();
-            BeanUtils.copyProperties(entity,userOrder);
+            UserOrder userOrder = new UserOrder();
+            BeanUtils.copyProperties(entity, userOrder);
             userOrder.setStatus(1);
             userOrderMapper.insertSelective(userOrder);
 
-            channel.basicAck(tag,true);
-        }catch (Exception e){
-            log.error("用户商城下单 发生异常：",e.fillInStackTrace());
-            channel.basicReject(tag,false);
+            channel.basicAck(tag, true);
+        } catch (Exception e) {
+            log.error("用户商城下单 发生异常：", e.fillInStackTrace());
+            channel.basicReject(tag, false);
         }
     }
+
 }
 
 
