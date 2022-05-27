@@ -165,13 +165,14 @@ public class RabbitmqConfig {
         container.setConnectionFactory(connectionFactory);
 //        container.setMessageConverter(new Jackson2JsonMessageConverter());
 
+
         //TODO：并发配置
         container.setConcurrentConsumers(env.getProperty("spring.rabbitmq.listener.concurrency", Integer.class));
         container.setMaxConcurrentConsumers(env.getProperty("spring.rabbitmq.listener.max-concurrency", Integer.class));
         container.setPrefetchCount(env.getProperty("spring.rabbitmq.listener.prefetch", Integer.class));
 
         //TODO：消息确认-确认机制种类
-        container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //ack手动确认
         container.setQueues(simpleQueue);
         container.setMessageListener(simpleListener);
 
