@@ -119,6 +119,7 @@ public class UserOrderController {
         try {
             BeanUtils.copyProperties(dto, userOrder);
             userOrder.setStatus(1);
+            //返回的生成的id，可留意下里面的写法
             userOrderMapper.insertSelective(userOrder);
         } catch (Exception e) {
             e.printStackTrace();
