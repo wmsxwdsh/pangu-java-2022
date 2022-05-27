@@ -22,25 +22,25 @@ public class MailService {
     @Autowired
     private Environment env;
 
-    public void sendEmail() throws Exception{
+    public void sendEmail() throws Exception {
         Properties properties = new Properties();
         properties.setProperty("mail.host", mailProperties.getHost());
         properties.setProperty("mail.transport.protocol", mailProperties.getProtocol());
         properties.setProperty("mail.smtp.auth", mailProperties.getNeedAuth());
         properties.setProperty("mail.smtp.socketFactory.class", mailProperties.getSslClass());
-        properties.setProperty("mail.smtp.port", mailProperties.getPort()+"");
+        properties.setProperty("mail.smtp.port", mailProperties.getPort() + "");
 
 
         /*Session session = Session.getDefaultInstance(properties);
         session.setDebug(true);*/ //第一种写法
 
-        Authenticator auth=new Authenticator() {
+        Authenticator auth = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(mailProperties.getUserName(),mailProperties.getPassword());
+                return new PasswordAuthentication(mailProperties.getUserName(), mailProperties.getPassword());
             }
         };
-        Session session = Session.getInstance(properties,auth); //第二种写法
+        Session session = Session.getInstance(properties, auth); //第二种写法
 
         MimeMessage mimeMessage = new MimeMessage(session);
         mimeMessage.setFrom(env.getProperty("mail.from"));
@@ -48,10 +48,10 @@ public class MailService {
         mimeMessage.setContent(env.getProperty("mail.content"), "text/html;charset=utf-8");
 
         //TODO：批量发送多个收件人
-        String arr[]=env.getProperty("mail.to").split(",");
-        Address[] addresses=new Address[arr.length];
-        for(int i=0;i<arr.length;i++){
-            addresses[i]=new InternetAddress(arr[i]);
+        String arr[] = env.getProperty("mail.to").split(",");
+        Address[] addresses = new Address[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            addresses[i] = new InternetAddress(arr[i]);
         }
         mimeMessage.addRecipients(Message.RecipientType.TO, addresses);
 
