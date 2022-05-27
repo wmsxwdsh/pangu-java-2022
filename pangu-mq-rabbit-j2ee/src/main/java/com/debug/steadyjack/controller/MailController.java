@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Administrator on 2018/9/1.
+ * 异步发邮件
  */
 @RestController
 public class MailController {
 
-    private static final Logger log= LoggerFactory.getLogger(MailController.class);
+    private static final Logger log = LoggerFactory.getLogger(MailController.class);
 
-    private static final String Prefix="mail";
+    private static final String Prefix = "mail";
 
     @Autowired
     private MailService mailService;
@@ -34,9 +35,9 @@ public class MailController {
     private Environment env;
 
 
-    @RequestMapping(value = Prefix+"/send",method = RequestMethod.GET)
-    public BaseResponse sendMail(){
-        BaseResponse response=new BaseResponse(StatusCode.Success);
+    @RequestMapping(value = Prefix + "/send", method = RequestMethod.GET)
+    public BaseResponse sendMail() {
+        BaseResponse response = new BaseResponse(StatusCode.Success);
         try {
             //mailService.sendEmail();
 
@@ -44,7 +45,7 @@ public class MailController {
             rabbitTemplate.setRoutingKey(env.getProperty("mail.routing.key.name"));
             rabbitTemplate.convertAndSend(MessageBuilder.withBody("mail发送".getBytes("UTF-8")).build());
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

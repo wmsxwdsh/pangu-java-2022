@@ -41,5 +41,15 @@ UserOrderListener 监听器
 （1）这里是实战商城抢单的核心入口
 （2）里面加了异步日志
 
+#############################################
+CommonMqListener 异步写日志、异步发邮件、死信队列
+#############################################
+1、用户登录异步写日志、异步发邮件
+测试类 UserController、MailContrller
+Listener（监听者） CommonMqListener
+
+
+
+
 
 

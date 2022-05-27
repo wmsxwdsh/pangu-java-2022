@@ -28,13 +28,14 @@ import java.util.Date;
 
 /**
  * Created by Administrator on 2018/8/30.
+ * 异步写日志
  */
 @RestController
 public class UserController {
 
-    private static final Logger log= LoggerFactory.getLogger(HelloWorldController.class);
+    private static final Logger log = LoggerFactory.getLogger(HelloWorldController.class);
 
-    private static final String Prefix="user";
+    private static final String Prefix = "user";
 
     @Autowired
     private UserMapper userMapper;
@@ -52,20 +53,19 @@ public class UserController {
     private Environment env;
 
 
-
-    @RequestMapping(value = Prefix+"/login",method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public BaseResponse login(@RequestParam("userName") String userName,@RequestParam("password") String password){
-        BaseResponse response=new BaseResponse(StatusCode.Success);
+    @RequestMapping(value = Prefix + "/login", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+        public BaseResponse login(@RequestParam("userName") String userName, @RequestParam("password") String password) {
+        BaseResponse response = new BaseResponse(StatusCode.Success);
         try {
-            User user=userMapper.selectByUserNamePassword(userName,password);
-            if (user!=null){
+            User user = userMapper.selectByUserNamePassword(userName, password);
+            if (user != null) {
 
                 //TODO：异步写用户日志
                 try {
                     /*UserLog log=new UserLog(userName,"Login","login",objectMapper.writeValueAsString(user));
                     userLogMapper.insertSelective(log);*/ //同步
 
-                    UserLog userLog=new UserLog(userName,"Login","login",objectMapper.writeValueAsString(user));
+                    UserLog userLog = new UserLog(userName, "Login", "login", objectMapper.writeValueAsString(user));
                     userLog.setCreateTime(new Date());
                     rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
                     rabbitTemplate.setExchange(env.getProperty("log.user.exchange.name"));
@@ -77,22 +77,20 @@ public class UserController {
                     Message message=new Message(objectMapper.writeValueAsBytes(userLog),properties);*/ //发送消息写法一
 
 
-                    Message message=MessageBuilder.withBody(objectMapper.writeValueAsBytes(userLog)).setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
+                    Message message = MessageBuilder.withBody(objectMapper.writeValueAsBytes(userLog)).setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
                     message.getMessageProperties().setHeader(AbstractJavaTypeMapper.DEFAULT_CONTENT_CLASSID_FIELD_NAME, MessageProperties.CONTENT_TYPE_JSON); //发送消息写法二
                     rabbitTemplate.convertAndSend(message);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
 
-
-
                 //TODO：塞权限数据-资源数据-视野数据
 
-            }else{
-                response=new BaseResponse(StatusCode.Fail);
+            } else {
+                response = new BaseResponse(StatusCode.Fail);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return response;
