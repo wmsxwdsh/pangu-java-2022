@@ -32,7 +32,7 @@ public class GsonUtil {
     /**
      * json转list
      *
-     * @param strJsonData
+     * @param jsonStr
      * @param cls
      * @return
      */
