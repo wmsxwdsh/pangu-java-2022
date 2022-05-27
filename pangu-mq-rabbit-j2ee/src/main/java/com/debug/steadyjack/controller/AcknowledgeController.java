@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Administrator on 2018/8/29.
+ * 演示的消息确认机制及并发配置
  */
 @RestController
 public class AcknowledgeController {
