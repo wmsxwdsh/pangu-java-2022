@@ -27,10 +27,16 @@ public class PanGuURLUtil {
 
 
     public static void main(String[] args) {
-        String testUrl = "";
-        String result = decode(testUrl);
+        String url = "";
+        String result = decode(url);
         System.out.println(result);
-    }
 
+        System.out.println("---------");
+
+        String url2 = "";
+        String result2 = decode(url2);
+        System.out.println(result2);
+
+    }
 }
 
