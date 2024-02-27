@@ -34,7 +34,7 @@ public class PanGuURLUtil {
         System.out.println("---------");
 
         String url2 = "";
-        String result2 = decode(url2);
+        String result2 = encode(url2);
         System.out.println(result2);
 
     }
