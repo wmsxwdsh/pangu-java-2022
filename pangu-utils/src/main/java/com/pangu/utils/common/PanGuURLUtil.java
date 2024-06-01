@@ -25,8 +25,13 @@ public class PanGuURLUtil {
         return URLUtil.decode(url);
     }
 
-
     public static void main(String[] args) {
+        String lastUrl = "";
+        String lastUrlResult = decode(lastUrl);
+        System.out.println(lastUrlResult);
+
+        System.out.println("---------");
+
         String url = "";
         String result = decode(url);
         System.out.println(result);
@@ -34,9 +39,9 @@ public class PanGuURLUtil {
         System.out.println("---------");
 
         String url2 = "";
-        String result2 = decode(url2);
+        String result2 = encode(url2);
         System.out.println(result2);
-
     }
+
 }
 
