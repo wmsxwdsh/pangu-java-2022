@@ -3,9 +3,10 @@ package com.pangu.utils.common;
 import cn.hutool.core.util.URLUtil;
 
 /**
+ * 可用于 Sub Convert
  * @author LZG
  */
-public class PanGuURLUtil {
+public class EnhanceURLUtil {
 
     /**
      * url encode
@@ -26,21 +27,18 @@ public class PanGuURLUtil {
     }
 
     public static void main(String[] args) {
+        // 解码，还原出原来
         String lastUrl = "";
-        String lastUrlResult = decode(lastUrl);
-        System.out.println(lastUrlResult);
+        String firstUrl = decode(lastUrl);
+        System.out.println(firstUrl);
 
         System.out.println("---------");
 
-        String url = "";
-        String result = decode(url);
+        // 生成加码的
+        String sourceUrl = "";
+        String result = decode(sourceUrl);
         System.out.println(result);
 
-        System.out.println("---------");
-
-        String url2 = "";
-        String result2 = encode(url2);
-        System.out.println(result2);
     }
 
 }
